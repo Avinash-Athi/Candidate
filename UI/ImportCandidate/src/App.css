@@ -1,0 +1,38 @@
+.content6{
+    width: 270px;
+    height: 50px;
+    display: none;
+  }
+  
+  #file-ip-label{
+    width: 270px;
+    height: 37px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    margin-right:10px;
+  }
+  .content5{
+    display: flex;
+    flex-direction: row;
+    margin-top: 120px;
+  }
+
+
+  .content1{
+    padding-top: 30px;
+    text-shadow: 4px 4px #d3caca;
+    font-size: larger;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  #download_template{
+    color:white;
+    text-decoration:none;
+  }
