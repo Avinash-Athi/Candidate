@@ -14,10 +14,10 @@ const Add = () => {
   let name,value;
 
   const handleInputs=(e)=>{
-    console.log(e);
+    //console.log(e);
     name=e.target.name;
-    console.log(e.target.name);
-    console.log(e.target.value);
+    //console.log(e.target.name);
+    //console.log(e.target.value);
     value=e.target.value;
     setCand({...cand,[name]:value});
   }
@@ -39,12 +39,24 @@ const Add = () => {
       })
     });
 
+    //console.log("res :"+res);
+
     const data=await res.json();
 
-    if(data.status===422||!data){
-      window.alert("Invalid Registration");
+    console.log("data : "+JSON.stringify(data));
+    //console.log("data : "+data.toString());
+    //console.log("data Response: "+JSON.parse(data));
+    //console.log(data.err)
+    const msg=JSON.stringify(data);
+
+    if(res.status===500||!data){
+      window.alert(`Invalid Registration ${msg}`);
       console.log("Invalid Registration");
-    }else{
+    }else if(res.status===422){
+      window.alert(`Invalid Registration ${msg}`);
+      console.log("Invalid Registration");
+    }
+    else{
       window.alert("Registration Sucessfull");
       console.log("Registration Sucessfull");
       // history.push("/addCandidate");
