@@ -35,10 +35,17 @@ function Import() {
 
     const data=await res.json();
 
-    if(data.status===422||!data){
+    console.log("data : "+JSON.stringify(data));
+    const msg=JSON.stringify(data);
+
+    if(res.status===422||!data){
       window.alert("Invalid Registration");
       console.log("Invalid Registration");
-    }else{
+    }else if(res.status===500||!data){
+      window.alert(`Invalid Registration ${msg}`);
+      console.log("Invalid Registration");
+    }
+    else{
       window.alert("Registration Sucessfull");
       console.log("Registration Sucessfull");
       history.push("/import");
