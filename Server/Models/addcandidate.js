@@ -52,6 +52,6 @@ const counterSchema={
 }
 
 const countermodel=mongoose.model("counter",counterSchema);
-const addCandid = mongoose.model('Addcandidate', addCandidate);
+const addCandid = mongoose.model("Addcandidate", addCandidate);
 // module.exports = mongoose.model('Addcandidate', addCandidate);
 module.exports = {countermodel,addCandid};
