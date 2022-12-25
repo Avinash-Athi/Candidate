@@ -48,7 +48,7 @@ function Import() {
     else{
       window.alert("Registration Sucessfull");
       console.log("Registration Sucessfull");
-     // history.push("/import");
+     
     }
   }
   // This function will be called when

@@ -1,6 +1,7 @@
 const Candidate = require("../Models/addcandidate");
 
 //ADD CANDIDATE SINGULAR
+
 const postAddCandidade =async (req, res, next) => {
  
     const CandidateName = req.body.CandidateName;
@@ -11,7 +12,7 @@ const postAddCandidade =async (req, res, next) => {
     const Experience = req.body.Experience;
     const status = req.body.status;
 
-    console.log(req.body)
+    //console.log(req.body)
 
     if(!CandidateName||!Email||!Contact||!Role||!PAN||!Experience){
       return res.status(422).json({error:"Plz filled the field property"});
@@ -23,7 +24,7 @@ const postAddCandidade =async (req, res, next) => {
         return res.status(500).json({ message: "Candidate PAN already exists " });
     }
     if (cz.find((cand) => cand.Email === Email)) {
-      //console.log(PAN);
+      //console.log(Email);
       return res.status(500).json({ message: "Candidate Email already exists" });
     }
     if (cz.find((cand) => cand.Contact === Contact)) {
@@ -54,10 +55,7 @@ const postAddCandidade =async (req, res, next) => {
         data.save().then(result => {
           console.log("Data saved");
         }).catch(err=> {
-          console.log("__________________")
-          //console.log(err);
-          //res.status(422).json({err})
-          console.log("__________________")
+          console.log(err);
         })
       }
     )
@@ -69,30 +67,24 @@ const postAddCandidade =async (req, res, next) => {
 const postMultiple=async (req,res,next)=>{
 
     var seqId=0;
-
     const cz = await Candidate.addCandid.find();
-
-    // }
     let flag=0;
+
     req.body.data.map((candidate, index)=>{
       //console.log(candidate[index].Email);
-      console.log("__________")
-      console.log(candidate.Email)
-      console.log(index);
-      console.log("__________")
+      // console.log("__________")
+      // console.log(candidate.Email)
+      // console.log(index);
+      // console.log("__________")
 
-      if (cz.find((cand) => cand.Email === candidate.Email )) {
+      //Email,Contact & PAN Validations
+      if (cz.find((cand) => (cand.Email === candidate.Email)|| (cand.Contact == candidate.Contact)  || (cand.PAN === candidate.PAN)   )) {
         //console.log(PAN);
-        console.log(candidate.Email+" Exist !!")
+        //console.log(candidate.Email+" Exist !!")
         flag=1;
-        return res.status(500).json({ message: `${candidate.Email} already exists` });
+        return res.status(500).json({ message: `${candidate.CandidateName} having duplicate data` });
       }
-
-
-
-
     })
-    //console.log("mail : "+mail);
 
     if(flag!=1){
     Candidate.countermodel.findOneAndUpdate(
