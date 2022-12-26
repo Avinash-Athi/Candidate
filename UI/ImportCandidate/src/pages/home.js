@@ -5,14 +5,15 @@ const home = () => {
   return (
     <div className='container'>
         <div className='row'>
-            <div className='col-md-12 my-5 text-right d-grid gap-2 d-md-flex justify-content-md-end'>
-                <Link to ="/Add" className = 'btn btn-outline-primary ' >Add Candidate</Link>
-                <Link to ="/Import" className = 'btn btn-outline-primary ' >Import Candidate</Link>
 
-            </div>
-            <div className=' mx-auto'>
+        <div className=' mx-auto' style={{padding:"15px"}}>
                 <h1>Candidate List</h1>
             </div>
+            <div className='col-md-12 my-5 text-right d-grid gap-2 d-md-flex justify-content-md-end'>
+            <Link to ="/Import" className = 'btn btn-primary ' > +    &nbsp;Import Candidates</Link>
+                <Link to ="/Add" className = 'btn btn-primary ' > +  &nbsp;  Add Candidate</Link>
+            </div>
+           
             <div class="row">
               <table>
               <tbody>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
-import Papa from "papaparse";
+import Papa, { parse } from "papaparse";
 import { useNavigate } from 'react-router-dom';
 
 const allowedExtensions = ["csv"];
@@ -48,7 +48,7 @@ function Import() {
     else{
       window.alert("Registration Sucessfull");
       console.log("Registration Sucessfull");
-      history.push("/import");
+     
     }
   }
   // This function will be called when
@@ -88,9 +88,15 @@ function Import() {
       // loads, we parse it and set the data.
        reader.onload = async ({ target }) => {
           const csv = Papa.parse(target.result, { header: true });
-          const parsedData = csv?.data;
-         console.log((parsedData))
-         
+          let parsedData = csv?.data;
+          
+          parsedData = parsedData.filter(item => {
+            if(item.CandidateName.length){
+              return true;
+            }
+            return false;
+          })
+          console.log((parsedData))
           const columns = Object.keys(parsedData[0]);
           setDataa(columns);
          // setJsonData(columns);
